@@ -241,3 +241,30 @@ Node B: tcp://localhost:1102, http://localhost:8082/
 
 接下来我们新建两个文件 `tx.py` 和 `rx.py` 分别用于发射（transmit）和接收（receive）数据。
 
+`tx.py`
+
+```py
+from unetpy import UnetSocket
+
+s = UnetSocket('localhost', 1101)
+s.send('hello!', 0)
+s.close()
+```
+
+跟之前我们在 Shell 里的操作大差不差，只不过是需要通过主机和端口来打开 `UnetSocket`。
+
+这里的 `send()` 函数会自动把字符串转换成 `byte[]`，所以我们可以传字符串，当然我们自己编码成 `byte[]` 再发送也没有问题，比如可以写成 `b'hello!'`。
+
+`rx.py`
+
+```py
+from unetpy import UnetSocket
+
+s = UnetSocket('localhost', 1102)
+rx = s.receive()
+print(f"from node {rx.from_}: {bytearray(rx.data).decode()}")
+s.close()
+```
+
+跟之前我们在 Shell 里的基本一样，输出直接用 Python 里的方法。
+
