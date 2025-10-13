@@ -1,1 +1,1 @@
-This is my workspace of learning unet, consists of unet, unet-handbook, my notes and my codes.
+This is my workspace of learning unet, consists of unet, my notes and my codes.
