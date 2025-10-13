@@ -52,7 +52,7 @@ OpenJDK 64-Bit Server VM (build 25.462-b08, mixed mode)
 
 ## 2. 正式开始
 
-### 2.1 第一次信息传输
+### 2.1 第一次信息发射
 
 接下来 `cd` 到 Unet 的目录下，尝试运行一下：
 
@@ -91,7 +91,7 @@ AGREE
 
 说明我们的 B 收到了来自地址 232（结点 A）的消息。
 
-到这里我们已经成功的实现了两个节点之间的第一次信息传输。
+到这里我们已经成功的实现了两个节点之间的第一次通信。
 
 Unet 会自动分配结点的地址，我们可以通过 `host()` 函数来获取结点的地址，比如：
 
@@ -212,4 +212,32 @@ hello!
 > s.close()
 ```
 
-### 2.4 
+### 2.4 使用 Python 发射和接收
+
+我们刚才一直在浏览器打开的结点里的 Shell 里进行通信，这样不免麻烦而且不具备可复用性。
+
+那么现在我们开始通过编程来进行通信，Unet 支持 Java、C、Python 等多项编程语言，这里我们使用 Python（各个语言在 Unet 的使用上都很相似）。
+
+首先我们需要安装 Unet 的包：
+
+```
+$ pip install unetpy
+```
+
+启动我们之前已经用过的 2-node network：
+
+```
+$ ./bin/unet ./samples/2-node-network.groovy
+
+2-node network
+--------------
+
+Node A: tcp://localhost:1101, http://localhost:8081/
+Node B: tcp://localhost:1102, http://localhost:8082/
+
+```
+
+可以看到我们的两个结点所对应的主机为 `localhost`，tcp 端口分别为 `1101` 和 `1102`。
+
+接下来我们新建两个文件 `tx.py` 和 `rx.py` 分别用于发射（transmit）和接收（receive）数据。
+
