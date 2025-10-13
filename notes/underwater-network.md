@@ -266,5 +266,27 @@ print(f"from node {rx.from_}: {bytearray(rx.data).decode()}")
 s.close()
 ```
 
-跟之前我们在 Shell 里的基本一样，输出直接用 Python 里的方法。
+也跟之前我们在 Shell 里的基本一样，输出直接用 Python 里的方法。
 
+跟我们之前在 Shell 里的操作顺序一样，先运行 `rx.py`：
+
+```
+$ python rx.py
+```
+
+再运行 `tx.py`：
+
+```
+$ python tx.py
+```
+
+再切到运行 `rx.py` 的终端看一下：
+
+```
+$ python rx.py
+from node 232: hello!
+```
+
+成功接收到数据，并且结束了接收。
+
+### 2.5 使用声学调制解调器
